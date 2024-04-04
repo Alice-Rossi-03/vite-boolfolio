@@ -27,7 +27,7 @@ export default {
 
                 <h5>Technologies:</h5>
                 <ul>
-                    <li v-for="(tech, index) in technologies" :key="index">
+                    <li v-for="(tech, index) in technologies" :key="tech.id">
                         {{ tech.name }}
                     </li>
                 </ul>

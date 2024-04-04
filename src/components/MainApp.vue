@@ -41,7 +41,7 @@ export default {
 
 <template>
 
-    <div class="container pt-4">
+    <div class="container pt-4 d-flex justify-content-center">
         <nav aria-label="Page navigation">
             <ul class="pagination">
                 <li class="page-item" :class=" currentPage === 1 ? 'disabled': '' ">
