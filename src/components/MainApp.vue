@@ -1,36 +1,66 @@
 <script>
 
 import axios from 'axios';
+import ProjectCard from '../components/ProjectCard.vue'; 
 
 export default {
+    components:{
+        ProjectCard
+    },
     name: 'MainApp',
     data() {
         return {
-
+            projectsArray: [],
+            currentPage: '',
+            lastPage: ''
         }
     },
     methods: {
+        getProjects(apiProjectPage) {
 
+            axios
+                .get('http://127.0.0.1:8001/api/test', {
+                    params: {
+                        page: apiProjectPage
+                    }
+                })
+                .then(response => {
+                    console.log(response.data.projects.data);
+
+                    this.projectsArray = response.data.projects.data;
+                    this.currentPage = response.data.projects.current_page;
+                    this.lastPage = response.data.projects.last_page;
+                })
+        }
     },
     mounted() {
-
+        this.getProjects(1);
     }
 }
 </script>
 
 <template>
+
+    <div class="container pt-4">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item" :class=" currentPage === 1 ? 'disabled': '' ">
+                    <button class="page-link" @click="getProjects(currentPage - 1)">Previous</button>
+                </li>
+                <li class="page-item" v-for=" (item, index) in lastPage " :key="index">
+                    <button class="page-link" @click="getProjects(item)">{{ item }}</button>
+                </li>
+                <li class="page-item" :class=" currentPage === lastPage ? 'disabled': '' ">
+                    <button class="page-link" @click="getProjects(currentPage + 1)">Next</button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
     <div class="pt-4 container d-flex flex-wrap justify-content-center gap-4">
 
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        
+        <ProjectCard v-for="(item, index) in projectsArray" :key="item.id" :title="item.title" :type="item.type.name" :description="item.description" :technologies="item.technologies"/>
+
     </div>
 </template>
 
