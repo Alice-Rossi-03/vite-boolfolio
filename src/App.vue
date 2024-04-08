@@ -1,31 +1,33 @@
 <script>
 import MainApp from './components/MainApp.vue';
+import HeaderApp from './components/HeaderApp.vue';
 
-export default{
-  components:{
-    MainApp
+export default {
+  components: {
+    MainApp,
+    HeaderApp
   },
-  data(){
-    return{
+  data() {
+    return {
 
     }
   },
-  methods:{
+  methods: {
 
   },
-  mounted(){
+  mounted() {
 
   }
 }
 </script>
 
 <template>
-   <header>
-      <h1 class="my-3 text-center fw-bolder">Project Cards</h1>
-      <MainApp/>
-   </header>
+
+  <HeaderApp/>
+
+  <RouterView/>
+  
+
 </template>
 
-<style>
-
-</style>
+<style></style>

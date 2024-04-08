@@ -1,6 +1,7 @@
 <script>
 
 import axios from 'axios';
+
 import ProjectCard from '../components/ProjectCard.vue'; 
 
 export default {
@@ -19,7 +20,7 @@ export default {
         getProjects(apiProjectPage) {
 
             axios
-                .get('http://127.0.0.1:8001/api/test', {
+                .get('http://127.0.0.1:8000/api/test', {
                     params: {
                         page: apiProjectPage
                     }
