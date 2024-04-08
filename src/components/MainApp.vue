@@ -62,7 +62,7 @@ export default {
 
     <div class="pt-4 container d-flex flex-wrap justify-content-center gap-4">
 
-        <ProjectCard v-for="(item, index) in projectsArray" :key="item.id" :title="item.title" :type="item.type.name" :description="item.description" :technologies="item.technologies"/>
+        <ProjectCard v-for="(item, index) in projectsArray" :propsElement="item" :key="item.id"/>
 
     </div>
 </template>

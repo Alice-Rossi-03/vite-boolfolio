@@ -5,13 +5,9 @@ import { RouterLink } from 'vue-router';
 
 export default {
     name: "ProjectCard",
-    props: {
-        title: String,
-        type: String,
-        description: String,
-        technologies: Array,
-        image: String,
-    },
+    props: [
+        'propsElement'
+    ],
     data() {
         return {
             store
@@ -24,27 +20,27 @@ export default {
 <template>
 
     <!-- <RouterLink :to="{ name: 'showProject', params: { slug: slug } }" class="card-title text-warning"> -->
-        <div class="card h-100" style="width: 16rem;">
+        <div class="card h-100">
 
-            <img class="card-img-top" :src="`${store.apiUrl}/storage/${image}`" alt="title">
+            <img class="card-img-top" :src="`${store.apiUrl}/storage/${propsElement.cover}`" alt="title">
 
             <div class="card-body">
 
-                <RouterLink :to="{name: 'single-project', params:{slug: slug}}" class="card-title text-warning">{{ title }}</RouterLink>
+                <h2><RouterLink :to="{name: 'single-project', params:{slug: propsElement.slug}}" class="card-title text-warning">{{ propsElement.title }}</RouterLink></h2>
 
-                <h2>{{ title }}</h2>
+                <!-- <h2>{{ propsElement.title }}</h2> -->
 
-                <h6 class="text-secondary">{{ type }}</h6>
+                <h6 class="text-secondary">{{ propsElement.type.name }}</h6>
 
-                <p class="card-text">{{ description }}</p>
+                <p class="card-text">{{ propsElement.description }}</p>
 
-                <div v-if="technologies && technologies.length">
+                <div v-if="propsElement.technologies && propsElement.technologies.length">
 
                     <hr class="my-4">
 
                     <h5>Technologies:</h5>
                     <ul>
-                        <li v-for="(tech, index) in technologies" :key="tech.id">
+                        <li v-for="(tech, index) in propsElement.technologies" :key="tech.id">
                             {{ tech.name }}
                         </li>
                     </ul>
@@ -55,4 +51,9 @@ export default {
     <!-- </RouterLink> -->
 </template>
 
-<style scoped></style>
+<style scoped>
+.card{
+    width: 16rem;
+}
+
+</style>
