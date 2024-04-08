@@ -10,10 +10,10 @@ export default {
         type: String,
         description: String,
         technologies: Array,
-        image: String, 
+        image: String,
     },
-    data(){
-        return{
+    data() {
+        return {
             store
         }
     }
@@ -23,35 +23,36 @@ export default {
 
 <template>
 
-    <div class="card h-100" style="width: 16rem;">
+    <!-- <RouterLink :to="{ name: 'showProject', params: { slug: slug } }" class="card-title text-warning"> -->
+        <div class="card h-100" style="width: 16rem;">
 
-        <img class="card-img-top" :src="`${store.apiUrl}/storage/${image}`" alt="title">
+            <img class="card-img-top" :src="`${store.apiUrl}/storage/${image}`" alt="title">
 
-        <div class="card-body">
+            <div class="card-body">
 
-            <h2 class="card-title text-warning">{{ title }}</h2>
-            
-            <h6 class="text-secondary">{{ type }}</h6>
+                <RouterLink :to="{name: 'single-project', params:{slug: slug}}" class="card-title text-warning">{{ title }}</RouterLink>
 
-            <p class="card-text">{{ description }}</p>
+                <h2>{{ title }}</h2>
 
-            <div v-if="technologies && technologies.length">
+                <h6 class="text-secondary">{{ type }}</h6>
 
-                <hr class="my-4">
+                <p class="card-text">{{ description }}</p>
 
-                <h5>Technologies:</h5>
-                <ul>
-                    <li v-for="(tech, index) in technologies" :key="tech.id">
-                        {{ tech.name }}
-                    </li>
-                </ul>
+                <div v-if="technologies && technologies.length">
+
+                    <hr class="my-4">
+
+                    <h5>Technologies:</h5>
+                    <ul>
+                        <li v-for="(tech, index) in technologies" :key="tech.id">
+                            {{ tech.name }}
+                        </li>
+                    </ul>
+                </div>
+
             </div>
-
         </div>
-    </div>
-
+    <!-- </RouterLink> -->
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
