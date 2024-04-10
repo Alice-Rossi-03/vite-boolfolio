@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage.vue';
 import ProjectList from './pages/ProjectList.vue';
 import ShowSingleProject from './pages/ShowSingleProject.vue';
 import NotFound from './pages/NotFound.vue';
+import ContactUs from './pages/ContactUs.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -22,6 +23,11 @@ const router = createRouter({
             path: '/boolfolio/:slug',
             name: 'single-project',
             component: ShowSingleProject 
+        },
+        {
+            path: '/contacts',
+            name: 'contacts',
+            component: ContactUs 
         },
         {
             path: '/:pathMatch(.*)*',

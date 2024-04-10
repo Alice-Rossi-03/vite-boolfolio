@@ -36,6 +36,10 @@ export default {
                         <li class="nav-item">
                             <RouterLink class="nav-link active" aria-current="page" :to="{name:'boolfolio'}">Boolfolio</RouterLink>
                         </li>
+
+                        <li class="nav-item">
+                            <RouterLink class="nav-link active" aria-current="page" :to="{name:'contacts'}">Contact Us</RouterLink>
+                        </li>
                         
                         <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
